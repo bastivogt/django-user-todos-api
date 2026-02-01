@@ -25,7 +25,8 @@ class TodoSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         categories = validated_data.pop("categories")
         item = models.Todo.objects.create(user=request.user, **validated_data)
-        item.categories.set(categories)
+        cats = [category for category in categories if category.user == request.user]
+        item.categories.set(cats)
         item.save()
         return item
         

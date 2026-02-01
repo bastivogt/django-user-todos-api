@@ -17,7 +17,7 @@ class Category(BaseTimeStampMixin):
 
     class Meta:
         ordering = [
-            "updated_at"
+            "-updated_at"
         ]
         verbose_name_plural = "Categories"
 
@@ -35,6 +35,6 @@ class Todo(BaseTimeStampMixin):
 
     class Meta:
         ordering = [
-            "updated_at"
+            "-updated_at"
         ]
 
