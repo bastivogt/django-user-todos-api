@@ -36,6 +36,7 @@ class TodoAdmin(admin.ModelAdmin):
     ]
 
     list_filter = [
+        "user",
         "done",
         "created_at",
         "updated_at"
