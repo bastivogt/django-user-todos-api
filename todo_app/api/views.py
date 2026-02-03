@@ -18,13 +18,18 @@ class CategoryListView(generics.ListCreateAPIView):
         current_user = self.request.user
         qs = models.Category.objects.filter(user=current_user)
         return qs
+    
+    # cleverer
+    def perform_create(self, serializer):
+        current_user = self.request.user
+        serializer.save(user=current_user)
 
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
+    # def get_serializer_context(self):
+    #     context = super().get_serializer_context()
         
-        # Add the request object to the context dictionary
-        context["request"] = self.request
-        return context
+    #     # Add the request object to the context dictionary
+    #     context["request"] = self.request
+    #     return context
 
 class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     # queryset = models.Category.objects.all()
@@ -61,12 +66,18 @@ class TodoListView(generics.ListCreateAPIView):
         qs = models.Todo.objects.filter(user=current_user)
         return qs
     
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
+    # cleverer
+    def perform_create(self, serializer):
+        current_user = self.request.user
+        serializer.save(user=current_user)
+
+
+    # def get_serializer_context(self):
+    #     context = super().get_serializer_context()
         
-        # Add the request object to the context dictionary
-        context["request"] = self.request
-        return context
+    #     # Add the request object to the context dictionary
+    #     context["request"] = self.request
+    #     return context
     
 
 class TodoDetailView(generics.RetrieveUpdateDestroyAPIView):
